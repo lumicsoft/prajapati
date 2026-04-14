@@ -15,17 +15,17 @@
         .gold-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(184, 134, 11, 0.3); }
         .story-ring { border: 2px solid #d4af37; padding: 3px; background: linear-gradient(#0f172a, #0f172a) padding-box, linear-gradient(to right, #d4af37, #b8860b) border-box; }
         
-        /* Moving Banner Ad Style */
-        .scrolling-wrapper { overflow: hidden; white-space: nowrap; background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid #d4af37; padding: 10px 0; }
-        .scrolling-text { display: inline-block; animation: scroll 30s linear infinite; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #f9f295; }
-        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        /* Moving Banner Animation */
+        .marquee-container { overflow: hidden; background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid #d4af37; padding: 10px 0; }
+        .marquee-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-weight: bold; color: #f9f295; font-size: 13px; }
+        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
     </style>
 </head>
 <body>
 
-    <div class="scrolling-wrapper">
-        <div class="scrolling-text">
-            ✨ Premium Ad: Shagun Wedding Planners Dewas - 20% Discount for RoyalJodi Members | 💍 Elite Jewellery Indore - New Collection Out Now | 🚗 Royal Car Rental Ujjain - Luxury Cars for Baraat ✨
+    <div class="marquee-container">
+        <div class="marquee-text">
+            ✨ ELITE AD: Royal Wedding Venue Dewas - Book Now for 10% Discount | 💎 Shadi Jewellers Indore - Exclusive Bridal Collection 2026 | 🚗 Luxury Car Rental Ujjain for Baraat - Starting @ ₹5000 ✨
         </div>
     </div>
 
@@ -46,32 +46,20 @@
 
     <div class="container mx-auto mt-6 px-4">
         <h3 class="text-xs uppercase tracking-widest text-amber-500 mb-4 ml-2">Elite Partners & Spotlight</h3>
-        <div class="flex space-x-6 overflow-x-auto pb-4 scrollbar-hide">
-            <?php 
-                $cities = ['Dewas', 'Indore', 'Bhopal', 'Ujjain', 'Sagar', 'Vidisha', 'Mhow', 'Gwalior', 'Ratlam', 'Jabalpur'];
-                foreach($cities as $city) {
-                    echo '
-                    <div class="flex-shrink-0 text-center">
-                        <div class="story-ring rounded-full w-20 h-20 mb-2 overflow-hidden shadow-2xl">
-                            <img src="https://i.pravatar.cc/150?u='.$city.'" class="w-full h-full object-cover">
-                        </div>
-                        <p class="text-[10px] uppercase font-bold text-gray-400">'.$city.'</p>
-                    </div>';
-                }
-            ?>
-        </div>
+        <div id="citySpotlight" class="flex space-x-6 overflow-x-auto pb-4 scrollbar-hide">
+            </div>
     </div>
 
     <section class="container mx-auto my-10 px-4">
         <div class="glass p-8 rounded-3xl text-center space-y-6">
             <h2 class="text-4xl md:text-6xl luxury-font italic">Find Your Eternal Soulmate</h2>
             <div class="flex flex-wrap justify-center gap-4">
-                <select class="bg-gray-800 p-4 rounded-xl border border-gray-700 focus:outline-none focus:border-amber-500">
+                <select id="searchStatus" class="bg-gray-800 p-4 rounded-xl border border-gray-700 focus:outline-none focus:border-amber-500">
                     <option>Looking For</option>
                     <option>Fresh Marriage</option>
                     <option>Punar Vivah</option>
                 </select>
-                <select class="bg-gray-800 p-4 rounded-xl border border-gray-700 focus:outline-none focus:border-amber-500">
+                <select id="searchCity" class="bg-gray-800 p-4 rounded-xl border border-gray-700 focus:outline-none focus:border-amber-500">
                     <option>Location (City)</option>
                     <option>Dewas</option><option>Indore</option><option>Ujjain</option><option>Sagar</option><option>Vidisha</option><option>Mhow</option>
                 </select>
@@ -84,122 +72,68 @@
         
         <div class="lg:col-span-3 space-y-8">
             <h2 class="text-2xl luxury-font border-b border-amber-900 pb-2 inline-block">Featured Profiles</h2>
-            
-            <div class="grid grid-cols-1 gap-6">
-                <?php 
-                $profiles = [
-                    ['name' => 'Ankit Sharma', 'age' => 29, 'work' => 'Software Architect', 'city' => 'Dewas', 'rank' => 'V5'],
-                    ['name' => 'Megha Verma', 'age' => 31, 'work' => 'Fashion Designer', 'city' => 'Indore', 'rank' => 'V2'],
-                    ['name' => 'Rahul Jain', 'age' => 27, 'work' => 'Civil Engineer', 'city' => 'Ujjain', 'rank' => 'V3'],
-                    ['name' => 'Priya Soni', 'age' => 25, 'work' => 'Bank Manager', 'city' => 'Sagar', 'rank' => 'V4'],
-                    ['name' => 'Suresh Malviya', 'age' => 33, 'work' => 'Business Man', 'city' => 'Vidisha', 'rank' => 'V6'],
-                    ['name' => 'Kavita Rai', 'age' => 28, 'work' => 'Teacher', 'city' => 'Mhow', 'rank' => 'V1'],
-                    ['name' => 'Deepak Gupta', 'age' => 30, 'work' => 'Doctor', 'city' => 'Bhopal', 'rank' => 'V7'],
-                    ['name' => 'Sneha Thakur', 'age' => 26, 'work' => 'HR Manager', 'city' => 'Gwalior', 'rank' => 'V5']
-                ];
+            <div id="profileGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                </div>
 
-                foreach($profiles as $p) {
-                ?>
-                <div class="glass p-6 rounded-2xl flex gap-6 hover:bg-white/[0.05] transition group cursor-pointer" onclick="showProspectus('<?= $p['name'] ?>', '<?= $p['age'] ?>', '<?= $p['work'] ?>', '<?= $p['city'] ?>', '<?= $p['rank'] ?>')">
-                    <div class="relative flex-shrink-0">
-                        <img src="https://i.pravatar.cc/200?u=<?= $p['name'] ?>" class="w-32 h-44 rounded-xl object-cover grayscale group-hover:grayscale-0 transition duration-500">
-                        <span class="absolute top-2 left-2 bg-amber-500 text-black text-[10px] font-bold px-2 py-1 rounded"><?= $p['rank'] ?> RANK</span>
-                    </div>
-                    <div class="flex flex-col justify-between w-full">
-                        <div>
-                            <h3 class="text-xl font-bold"><?= $p['name'] ?>, <?= $p['age'] ?></h3>
-                            <p class="text-amber-500 text-sm italic"><?= $p['work'] ?></p>
-                            <div class="text-xs text-gray-400 mt-2 space-y-1">
-                                <p>City: <?= $p['city'] ?></p>
-                            </div>
-                        </div>
-                        <button class="mt-4 border-b border-amber-500 text-amber-500 text-sm w-fit hover:text-white transition">Full Prospectus →</button>
+            <div class="relative h-48 rounded-3xl overflow-hidden group shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60 flex items-center p-8">
+                    <div>
+                        <span class="text-amber-500 font-bold tracking-tighter">ELITE ADVERTISING</span>
+                        <h4 class="text-2xl luxury-font">Royal Wedding Planners in Dewas</h4>
+                        <button class="gold-btn mt-4 px-6 py-2 rounded-lg">Get Quote</button>
                     </div>
                 </div>
-                <?php } ?>
             </div>
         </div>
 
         <div class="space-y-8">
             <h2 class="text-2xl luxury-font border-b border-amber-900 pb-2">Business Spotlight</h2>
             
-            <div class="grid grid-cols-1 gap-6">
-                <?php for($i=1; $i<=8; $i++) { ?>
-                <div class="glass overflow-hidden rounded-2xl">
-                    <div class="relative">
-                        <video class="w-full h-40 object-cover" autoplay muted loop>
-                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        </video>
-                        <span class="absolute top-2 left-2 bg-red-600 text-[8px] font-bold px-2 py-1 rounded">AD #<?= $i ?></span>
-                    </div>
-                    <div class="p-4">
-                        <h5 class="font-bold text-amber-500">Elite Services <?= $i ?></h5>
-                        <p class="text-[10px] text-gray-400 uppercase tracking-widest">Dewas | Indore | Ujjain</p>
-                    </div>
+            <div id="videoAdsColumn" class="space-y-6">
                 </div>
-                <?php } ?>
-            </div>
-
-            <div class="relative h-64 rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/60 flex items-center p-8 text-center justify-center">
-                    <div>
-                        <span class="text-amber-500 font-bold tracking-tighter">PREMIUM SPACE</span>
-                        <h4 class="text-xl luxury-font">Advertise Your Wedding Business Here</h4>
-                        <button class="gold-btn mt-4 px-6 py-2 rounded-lg text-xs">Call Us</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
-    <div id="prospectusPopup" class="hidden fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
-        <div class="glass p-1 rounded-3xl w-full max-w-5xl relative flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
+    <div id="prospectusModal" class="hidden fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4">
+        <div class="glass max-w-5xl w-full rounded-3xl overflow-hidden relative flex flex-col md:flex-row max-h-[90vh]">
             
-            <div class="w-full md:w-1/3 bg-slate-900 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-amber-500/20">
-                <span class="text-[10px] bg-amber-500 text-black px-2 py-1 rounded font-bold mb-4">SPONSORED AD</span>
-                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300" class="rounded-xl mb-4 shadow-xl border border-amber-500/20">
-                <h4 class="text-xl luxury-font gold-gradient text-center">Lumic Technologies</h4>
-                <p class="text-xs text-gray-400 text-center mt-2 leading-relaxed">Top Software & Matrimony App Development in Dewas. Grow your business with our Elite Tech Solutions.</p>
-                <button class="gold-btn mt-6 px-8 py-3 rounded-full text-xs">VISIT WEBSITE</button>
+            <div class="w-full md:w-1/3 bg-amber-900/20 p-8 flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-amber-500/30">
+                <p class="text-[10px] text-amber-500 font-bold uppercase mb-4 tracking-widest">Sponsored Ad</p>
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300" class="rounded-xl mb-4">
+                <h4 class="text-xl luxury-font gold-gradient">Lumic Technologies</h4>
+                <p class="text-xs text-gray-400 mt-2">Specialists in Matrimony & MLM Software Development.</p>
+                <button class="gold-btn mt-6 px-8 py-2 rounded-full text-xs">Visit Sponsor</button>
             </div>
 
             <div class="w-full md:w-2/3 p-8 overflow-y-auto">
-                <button onclick="closeProspectus()" class="absolute top-4 right-6 text-3xl text-amber-500 hover:text-white transition">×</button>
+                <button onclick="closeProspectus()" class="absolute top-4 right-6 text-3xl text-amber-500 hover:text-white transition">&times;</button>
                 
                 <div class="flex items-center gap-6 mb-8">
-                    <img id="popImg" src="" class="w-24 h-24 rounded-full border-4 border-amber-500 shadow-2xl object-cover">
+                    <img id="modalImg" src="" class="w-24 h-24 rounded-full border-4 border-amber-500 object-cover">
                     <div>
-                        <h2 id="popName" class="text-3xl luxury-font gold-gradient"></h2>
-                        <p id="popWork" class="text-amber-500 text-lg"></p>
+                        <h2 id="modalName" class="text-3xl luxury-font gold-gradient"></h2>
+                        <p id="modalWork" class="text-amber-500 text-lg"></p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8 text-sm border-t border-white/10 pt-8">
-                    <div>
-                        <p class="text-gray-500 uppercase text-[10px] tracking-widest">Father's Name</p>
-                        <p class="font-bold text-lg">Shri Kailash Prajapati</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="space-y-4">
+                        <p class="border-b border-white/10 pb-2"><span class="text-gray-500">Father:</span> <span class="float-right font-bold">Shri Kailash Prajapati</span></p>
+                        <p class="border-b border-white/10 pb-2"><span class="text-gray-500">Mother:</span> <span class="float-right font-bold">Smt. Geeta Devi</span></p>
+                        <p class="border-b border-white/10 pb-2"><span class="text-gray-500">City:</span> <span id="modalCity" class="float-right font-bold text-amber-500"></span></p>
                     </div>
-                    <div>
-                        <p class="text-gray-500 uppercase text-[10px] tracking-widest">Mother's Name</p>
-                        <p class="font-bold text-lg">Smt. Geeta Devi</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-500 uppercase text-[10px] tracking-widest">City</p>
-                        <p id="popCity" class="font-bold text-lg text-amber-500"></p>
-                    </div>
-                    <div>
-                        <p class="text-gray-500 uppercase text-[10px] tracking-widest">Rank Status</p>
-                        <p id="popRank" class="font-bold text-lg"></p>
+                    <div class="space-y-4">
+                        <p class="border-b border-white/10 pb-2"><span class="text-gray-500">Rank:</span> <span id="modalRank" class="float-right font-bold"></span></p>
+                        <p class="border-b border-white/10 pb-2"><span class="text-gray-500">Status:</span> <span class="float-right font-bold">Available</span></p>
                     </div>
                 </div>
 
-                <div class="mt-10 p-6 bg-amber-500/5 rounded-2xl border border-amber-500/20">
-                    <p class="text-amber-500 font-bold mb-2">Family Expectations:</p>
-                    <p class="text-sm text-gray-300 italic leading-relaxed">"Hum ek sanskaari aur vyavsayik parivaar talash rahe hain jo rishton ki kadar kare. Adhik jaankari ke liye connect karein."</p>
+                <div class="mt-8 p-4 bg-white/5 rounded-xl text-xs text-gray-400 italic">
+                    Note: Please verify all details independently. RoyalJodi provides elite connections but assumes no legal liability.
                 </div>
-
-                <button class="gold-btn w-full mt-8 py-4 rounded-2xl uppercase tracking-[4px] text-xs">Request Contact Details</button>
+                
+                <button class="gold-btn w-full mt-8 py-4 rounded-xl uppercase tracking-widest">Connect with Family</button>
             </div>
         </div>
     </div>
@@ -215,24 +149,85 @@
     </footer>
 
     <script>
-        function toggleModal(id) {
-            document.getElementById(id).classList.toggle('hidden');
+        // Data for Dynamic Loading
+        const cities = ['Dewas', 'Indore', 'Bhopal', 'Ujjain', 'Sagar', 'Vidisha', 'Mhow', 'Gwalior', 'Ratlam', 'Jabalpur'];
+        
+        const profiles = [
+            { name: "Ankit Sharma", age: 29, work: "Software Architect", city: "Dewas", rank: "V5", type: "Fresh", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" },
+            { name: "Megha Verma", age: 31, work: "Fashion Designer", city: "Indore", rank: "V2", type: "Punar Vivah", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" },
+            { name: "Rahul Jain", age: 27, work: "Civil Engineer", city: "Ujjain", rank: "V3", type: "Fresh", img: "https://i.pravatar.cc/200?u=rahul" },
+            { name: "Priya Soni", age: 25, work: "Teacher", city: "Sagar", rank: "V4", type: "Fresh", img: "https://i.pravatar.cc/200?u=priya" },
+            { name: "Suresh Malviya", age: 33, work: "Business Man", city: "Vidisha", rank: "V6", type: "Punar Vivah", img: "https://i.pravatar.cc/200?u=suresh" },
+            { name: "Deepak Gupta", age: 30, work: "Doctor", city: "Bhopal", rank: "V7", type: "Fresh", img: "https://i.pravatar.cc/200?u=deepak" },
+            { name: "Kavita Rai", age: 28, work: "HR Manager", city: "Mhow", rank: "V1", type: "Fresh", img: "https://i.pravatar.cc/200?u=kavita" },
+            { name: "Amit Thakur", age: 32, work: "Lawyer", city: "Gwalior", rank: "V5", type: "Punar Vivah", img: "https://i.pravatar.cc/200?u=amit" },
+            { name: "Rohan Vyas", age: 28, work: "Pilot", city: "Indore", rank: "V4", type: "Fresh", img: "https://i.pravatar.cc/200?u=rohan" },
+            { name: "Sneha Mishra", age: 26, work: "Banker", city: "Dewas", rank: "V3", type: "Fresh", img: "https://i.pravatar.cc/200?u=sneha" }
+        ];
+
+        // Load City Stories
+        const cityDiv = document.getElementById('citySpotlight');
+        cities.forEach(city => {
+            cityDiv.innerHTML += `
+                <div class="flex-shrink-0 text-center">
+                    <div class="story-ring rounded-full w-20 h-20 mb-2 overflow-hidden shadow-2xl">
+                        <img src="https://i.pravatar.cc/100?u=${city}" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] uppercase font-bold text-gray-400">${city}</p>
+                </div>`;
+        });
+
+        // Load Profiles
+        const profileDiv = document.getElementById('profileGrid');
+        profiles.forEach(p => {
+            profileDiv.innerHTML += `
+                <div class="glass p-6 rounded-2xl flex gap-6 hover:bg-white/[0.05] transition group cursor-pointer" onclick="openProspectus('${p.name}', '${p.age}', '${p.work}', '${p.city}', '${p.rank}', '${p.img}')">
+                    <div class="relative flex-shrink-0">
+                        <img src="${p.img}" class="w-32 h-44 rounded-xl object-cover grayscale group-hover:grayscale-0 transition duration-500">
+                        <span class="absolute top-2 left-2 ${p.type === 'Fresh' ? 'bg-amber-500 text-black' : 'bg-orange-600 text-white'} text-[10px] font-bold px-2 py-1 rounded uppercase">${p.type === 'Fresh' ? p.rank + ' Rank' : 'Punar Vivah'}</span>
+                    </div>
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold">${p.name}, ${p.age}</h3>
+                            <p class="text-amber-500 text-sm italic">${p.work}</p>
+                            <div class="text-xs text-gray-400 mt-2 space-y-1">
+                                <p>City: ${p.city}</p>
+                                <p>Rank: ${p.rank}</p>
+                            </div>
+                        </div>
+                        <button class="mt-4 border-b border-amber-500 text-amber-500 text-sm w-fit hover:text-white transition">Full Prospectus →</button>
+                    </div>
+                </div>`;
+        });
+
+        // Load Video Ads
+        const videoDiv = document.getElementById('videoAdsColumn');
+        for(let i=1; i<=8; i++) {
+            videoDiv.innerHTML += `
+                <div class="glass overflow-hidden rounded-2xl">
+                    <video class="w-full" autoplay muted loop>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                    <div class="p-4">
+                        <h5 class="font-bold text-amber-500 text-xs">Premium Partner Ad ${i}</h5>
+                        <p class="text-[10px] text-gray-400">Special Services in MP</p>
+                    </div>
+                </div>`;
         }
 
-        function showProspectus(name, age, work, city, rank) {
-            document.getElementById('popName').innerText = name + ', ' + age;
-            document.getElementById('popWork').innerText = work;
-            document.getElementById('popCity').innerText = city;
-            document.getElementById('popRank').innerText = rank;
-            document.getElementById('popImg').src = 'https://i.pravatar.cc/150?u=' + name;
-            
-            document.getElementById('prospectusPopup').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Stop scrolling
+        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
+
+        function openProspectus(name, age, work, city, rank, img) {
+            document.getElementById('modalName').innerText = name + ", " + age;
+            document.getElementById('modalWork').innerText = work;
+            document.getElementById('modalCity').innerText = city;
+            document.getElementById('modalRank').innerText = rank;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('prospectusModal').classList.remove('hidden');
         }
 
         function closeProspectus() {
-            document.getElementById('prospectusPopup').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Resume scrolling
+            document.getElementById('prospectusModal').classList.add('hidden');
         }
     </script>
 </body>
